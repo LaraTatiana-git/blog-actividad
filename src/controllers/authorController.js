@@ -1,3 +1,4 @@
+// src/controllers/authorController.js
 const Author = require('../models/author');
 
 exports.createAuthor = async (req, res) => {
@@ -5,7 +6,7 @@ exports.createAuthor = async (req, res) => {
         const author = await Author.create(req.body);
         res.status(201).json(author);
     } catch (error) {
-        res.status(500).json({ error: error.message });
+        res.status(400).json({ error: error.message });
     }
 };
 

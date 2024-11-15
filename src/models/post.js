@@ -1,36 +1,43 @@
-'use strict';
-const { Model } = require('sequelize');
-module.exports = (sequelize, DataTypes) => {
-    class Post extends Model {
-        static associate(models) {
-            Post.belongsTo(models.Author, { foreignKey: 'author_id' });
+// src/models/post.js
+const { DataTypes } = require('sequelize');
+const sequelize = require('../../config/db');
+const Author = require('./author');
+
+const Post = sequelize.define('Post', {
+    id: {
+        type: DataTypes.INTEGER,
+        primaryKey: true,
+        autoIncrement: true
+    },
+    titulo: {
+        type: DataTypes.STRING,
+        allowNull: false
+    },
+    descripcion: {
+        type: DataTypes.TEXT,
+        allowNull: false
+    },
+    fecha_creacion: {
+        type: DataTypes.DATE,
+        defaultValue: DataTypes.NOW
+    },
+    categoria: {
+        type: DataTypes.STRING
+    },
+    autor_id: {
+        type: DataTypes.INTEGER,
+        references: {
+            model: 'authors',
+            key: 'id'
         }
     }
-    Post.init({
-        title: {
-            type: DataTypes.STRING,
-            allowNull: false
-        },
-        description: {
-            type: DataTypes.TEXT
-        },
-        created_at: {
-            type: DataTypes.DATE,
-            defaultValue: DataTypes.NOW
-        },
-        category: {
-            type: DataTypes.STRING
-        },
-        author_id: {
-            type: DataTypes.INTEGER,
-            references: {
-                model: 'authors',
-                key: 'id'
-            }
-        }
-    }, {
-        sequelize,
-        modelName: 'Post',
-    });
-    return Post;
-};
+}, {
+    tableName: 'posts',
+    timestamps: true
+});
+
+// Define associations
+Author.hasMany(Post, { foreignKey: 'autor_id' });
+Post.belongsTo(Author, { foreignKey: 'autor_id' });
+
+module.exports = Post;

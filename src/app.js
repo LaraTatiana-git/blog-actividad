@@ -1,25 +1,27 @@
-// src/app.js
+require('dotenv').config();
+
 const express = require('express');
-const { sequelize } = require('./models');
-const authorRoutes = require('./routes/authorRoutes');
-const postRoutes = require('./routes/postRoutes');
+import cors from 'cors';
+import authorRoutes from './routes/authorRoutes';
+import postRoutes from './routes/postRoutes';
+const errorHandler = require('./middleware/errorHandler');
+
+const requiredEnvVars = ['DB_USERNAME', 'DB_PASSWORD', 'DB_DATABASE', 'DB_HOST'];
+requiredEnvVars.forEach(envVar => {
+    if (!process.env[envVar]) {
+        throw new Error(`Missing required environment variable: ${envVar}`);
+    }
+});
 
 const app = express();
 
+app.use(cors());
 app.use(express.json());
-app.use(authorRoutes);
-app.use(postRoutes);
 
-// Export app before starting server
+app.use('/api', authorRoutes);
+app.use('/api', postRoutes);
+
+// Use the error handling middleware
+app.use(errorHandler);
+
 module.exports = app;
-
-// Only start server if file is run directly
-if (require.main === module) {
-    sequelize.sync().then(() => {
-        app.listen(3000, () => {
-            console.log('Server is running on port 3000');
-        });
-    }).catch(error => {
-        console.error('Unable to connect to the database:', error);
-    });
-}
