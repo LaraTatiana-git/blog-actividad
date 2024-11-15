@@ -1,0 +1,26 @@
+{
+    "development": {
+        "username": "root",
+        "password": "Rogue one",
+        "database": "blog-db",
+        "host": "127.0.0.1",
+        "dialect": "mysql",
+        "use_env_variable": "BLOG_URL"
+    },
+    "test": {
+        "username": "root",
+        "password": "Rogue one",
+        "database": "blog-db",
+        "host": "127.0.0.1",
+        "dialect": "mysql",
+        "use_env_variable": "BLOG_URL"
+    },
+    "production": {
+        "username": "root",
+        "password": "Rogue one",
+        "database": "blog-db",
+        "host": "127.0.0.1",
+        "dialect": "mysql",
+        "use_env_variable": "BLOG_URL"
+    }
+}

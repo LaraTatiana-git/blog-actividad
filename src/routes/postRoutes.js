@@ -1,0 +1,9 @@
+const express = require('express');
+const router = express.Router();
+const postController = require('../controllers/postController');
+
+router.post('/api/posts', postController.createPost);
+router.get('/api/posts', postController.getPosts);
+router.get('/api/posts/author/:authorId', postController.getPostsByAuthor);
+
+module.exports = router;
