@@ -1,4 +1,3 @@
-// src/models/post.js
 const { DataTypes } = require('sequelize');
 const sequelize = require('../../config/db');
 const Author = require('./author');
@@ -36,7 +35,7 @@ const Post = sequelize.define('Post', {
     timestamps: true
 });
 
-// Define associations
+
 Author.hasMany(Post, { foreignKey: 'autor_id' });
 Post.belongsTo(Author, { foreignKey: 'autor_id' });
 

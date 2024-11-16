@@ -1,4 +1,3 @@
-// src/models/author.js
 const { DataTypes } = require('sequelize');
 const sequelize = require('../../config/db');
 
@@ -21,9 +20,6 @@ const Author = sequelize.define('Author', {
         type: DataTypes.STRING,
         allowNull: true
     }
-}, {
-    tableName: 'authors',
-    timestamps: true
 });
 
 module.exports = Author;

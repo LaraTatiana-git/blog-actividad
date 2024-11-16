@@ -1,18 +1,15 @@
-// config/db.js
 const { Sequelize } = require('sequelize');
-
-const sequelize = new Sequelize('blog_db', 'root', '', {
-    host: 'localhost',
+const sequelize = new Sequelize(process.env.DB_DATABASE, process.env.DB_USERNAME, process.env.DB_PASSWORD, {
+    host: process.env.DB_HOST,
     dialect: 'mysql',
-    logging: false,
     dialectOptions: {
         charset: 'utf8mb4',
-        multipleStatements: true
     },
     define: {
         charset: 'utf8mb4',
-        collate: 'utf8mb4_general_ci'
-    }
+        collate: 'utf8mb4_unicode_ci',
+    },
+    logging: false,
 });
 
 module.exports = sequelize;

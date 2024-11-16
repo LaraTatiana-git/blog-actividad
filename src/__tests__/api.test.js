@@ -41,7 +41,6 @@ describe('API Tests', () => {
                 .post('/api/authors')
                 .send({
                     nombre: 'Invalid Author'
-                    // Missing required email
                 });
             expect(response.statusCode).toBe(400);
         });
@@ -83,7 +82,6 @@ describe('API Tests', () => {
                 .post('/api/posts')
                 .send({
                     descripcion: 'Test Description'
-                    // Missing required titulo
                 });
             expect(response.statusCode).toBe(400);
         });
