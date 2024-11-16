@@ -1,5 +1,5 @@
 **Blog API Application**
-A RESTful API built with Express.js for managing blog posts and authors. This application provides endpoints for creating and managing blog posts and authors with MySQL database integration using Sequelize ORM.
+An API built with Express.js for managing blog posts and authors. This application provides endpoints for creating and managing blog posts and authors with MySQL database integration using Sequelize ORM.
 
 **Features**
 
