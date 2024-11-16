@@ -1,3 +1,4 @@
-node_modules/^M
+node_modules/
 .env
-.sql
+# Allow SQL files
+# Allow SQL files >> .gitignore.sql
